@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Homepage from "./pages/Homepage";
+import GiftSuggestion from "./pages/GiftSuggestion";
+import SignupPrompt from "./pages/SignupPrompt";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+      <Routes>
+        <Route path="/" element={<Homepage/>} />
+        <Route path="/gift-suggestion" element={<GiftSuggestion/>} />
+        <Route path="/signup-prompt" element={<SignupPrompt/>} />
+      </Routes>
+    </Box>
   );
 }
 
