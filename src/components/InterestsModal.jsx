@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import { theme } from './Theme';
 import { useNavigate } from 'react-router-dom';
+import { cloneDeep } from 'lodash';
 
 const mod = {
   width: '100%',
@@ -95,17 +96,47 @@ const mod = {
     padding: '3rem 3rem 1.5rem',
     width: '30rem',
     height: '13.375rem',
-    bgcolor: 'yellow'
   },
   '.category': {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    // alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
     padding: '0',
     width: '24rem',
     height: '21.4375rem',
     overflowY: 'scroll',
-    bgcolor: 'lightblue'
+    '.category-item': {
+      boxSizing: 'border-box',
+      width: '7.333125rem',
+      height: '6rem',
+      mb: '1rem',
+      bgcolor: theme.white,
+      border: '1px solid #D5D8DF',
+      borderRadius: theme.radius,
+      display: 'flex',
+      alignItems: 'flex-end',
+      position: 'relative',
+      // bgcolor: 'red',
+      '&>img': {
+        position: 'absolute',
+        right: '0.5rem',
+        top: '0.5rem'
+      }
+    },
+    '.category-label': {
+      width: '5rem',
+      height: '2.5rem',
+      ml: '0.3rem',
+      // mb: '0.5rem',
+      fontWeight: '475',
+      fontSize: '0.875rem',
+      lineHeight: '1.25rem',
+      color: '#121212',
+      display: 'flex',
+      alignItems: 'flex-end'
+    }
   },
   '.modal3-wrapper': {
     display: 'flex',
@@ -118,11 +149,44 @@ const mod = {
     borderRadius: '0  0 1rem 1rem',
     border: '1px solid #D5D8DF',
     mt: '1rem'
-  }
+  },
 };
 
+const products = [
+  {label: 'Women fashion', selected: false},
+  {label: 'Men fashion', selected: false},
+  {label: 'shoes', selected: false},
+  {label: 'Skin care', selected: false},
+  {label: 'Sport', selected: false},
+  {label: 'Gadgets', selected: false},
+  {label: 'Jewelry and watches', selected: false},
+  {label: 'Beauty and hair', selected: false},
+  {label: 'Bags and shoes', selected: false},
+  {label: 'Bags and shoes', selected: false},
+  {label: 'Bags and shoes', selected: false},
+  {label: 'Bags and shoes', selected: false},
+]
 export default function InterestsModal() {
   const navigate = useNavigate();
+
+  const [categories, setCategories] = React.useState(products)
+
+  const handleDisable = (items) => {
+    const selected = items && items.find((item) => {
+      return item.selected;
+    });
+    if (selected) return false;
+    return true;
+  }
+
+  const selectItem = (index) => {
+
+    const items = cloneDeep(categories)
+    const selected = items[index];
+    selected.selected = !selected.selected
+    setCategories(items)
+
+  }
 
   return (
     <Box sx={mod}>
@@ -142,11 +206,31 @@ export default function InterestsModal() {
             </div>
           </div>
 
-          <div className="category"></div>
+          <div className="category">
+            {
+              categories && categories.map((category, i) => (
+                <div className="category-item" key={`${category}${i}`}
+                  style={{ backgroundColor: `${category && category.selected ? '#14142B' : '#FFFFFF'}` }}
+                  onClick={()=>selectItem(i)}
+                >
+                  <div className="category-label"
+                    style={{color:`${category && category.selected? '#FFFFFF':'#121212'}`}}
+                  >
+                    {category && category.label}
+                  </div>
+                  {
+                    category && category.selected &&
+                  <img src="images/mark.png" alt="mark" width='20px' height='20px' />
+                  }
+                </div>
+              ))
+            }
+          </div>
 
           <div className="modal3-wrapper">
-            <button className="modal3" style={{}}
-              disabled onClick={()=>navigate('/interests')}
+            <button className="modal3" style={{opacity: `${handleDisable(categories)? '0.5':'1'}`}}
+              disabled = {handleDisable(categories)}
+              onClick={() => navigate('/main-page')}
             >
               Done
             </button>

@@ -154,13 +154,13 @@ const GiftSuggestion = () => {
   const navigate = useNavigate();
 
   const products = [
-    {img: 'images/img1.png', label: 'Air Force Max', price: 2000, selected: 'false'},
-    {img: 'images/img2.png', label: 'Birkins bag', price: 2000, selected: 'false'},
-    {img: 'images/img3.png', label: 'Toy', price: 2000, selected: 'false'},
-    {img: 'images/img4.png', label: 'Air force Max', price: 2000, selected: 'false'},
-    {img: 'images/img5.png', label: 'Air force Max', price: 2000, selected: 'false'},
-    {img: 'images/img6.png', label: 'Air force Max', price: 2000, selected: 'false'},
-    {img: 'images/img1.png', label: 'Air force Max', price: 2000, selected: 'false'},
+    {img: 'images/img1.png', label: 'Air Force Max', price: 2000, selected: false},
+    {img: 'images/img2.png', label: 'Birkins bag', price: 2000, selected: false},
+    {img: 'images/img3.png', label: 'Toy', price: 2000, selected: false},
+    {img: 'images/img4.png', label: 'Air force Max', price: 2000, selected: false},
+    {img: 'images/img5.png', label: 'Air force Max', price: 2000, selected: false},
+    {img: 'images/img6.png', label: 'Air force Max', price: 2000, selected: false},
+    {img: 'images/img1.png', label: 'Air force Max', price: 2000, selected: false},
   ]
 
   const handleAdd = (item) => {

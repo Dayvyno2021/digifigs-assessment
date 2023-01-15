@@ -8,6 +8,7 @@ import SignupPage from "./pages/SignupPage";
 import WelcomePage from "./pages/WelcomePage";
 import WishlistPage from "./pages/WishlistPage";
 import InterestPage from "./pages/InterestsPage";
+import MainPage from "./pages/MainPage";
 
 const wrapper = {
   [theme.breakpoints.up('xl')]: {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/welcome" element={<WelcomePage/>} />
         <Route path="/wishlist" element={<WishlistPage/>} />
         <Route path="/interests" element={<InterestPage/>} />
+        <Route path="/main-page" element={<MainPage/>} />
       </Routes>
     </Box>
   );
