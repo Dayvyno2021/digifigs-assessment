@@ -4,7 +4,6 @@ import { theme } from '../components/Theme';
 import { useNavigate } from 'react-router-dom';
 
 const prompt = {
-
   width: '100%',
   minHeight: '100vh',
   position: 'relative',
@@ -38,50 +37,66 @@ const prompt = {
     [theme.breakpoints.down('sm')]: {
       width: '28rem'
     },
-    height: '13.25rem',
+    height: '14.875rem',
     display: 'flex',
     flexDirection: 'column',
     '.logo': {
       mb: '1.5rem'
     },
-    '.text': {
-      height: '3.75',
+
+    '.header-wrapper': {
       mb: '1.5rem',
-        fontStyle: 'normal',
-        fontWeight: '500',
-        fontSize: '1.25rem',
-        lineHeight: '1.875rem',
-        color: '#FFFFFF'
+      '.header': {
+        mb: '2px',
+        width: '100%',
+        height: '1.875',
+        fontWeight: '700',
+        fontSize: '1.5rem',
+        lineHeight: '1.875',
+        color: theme.white
+      },
+      '.body': {
+        height: '3.375rem',
+        width: '31.25rem',
+        [theme.breakpoints.down('sm')]: {
+          width: '28rem'
+        },
+        fontWeight: '475',
+        fontSize: '1.125rem',
+        lineWeight: '1.69rem',
+        display: 'flex',
+        aligntItems: 'center',
+        color: theme.white
+      }
     }
   },
   '.btns-wrapper': {
+    width: '100%',
     height: '3.5rem',
+    p: '0',
     '&>button': {
-      height: '100%',
-      width: '11.25rem',
-      borderRadius: '0.5rem',
-      fontStyle: 'normal',
-      fontWeight: '500',
-      fontSize: '1rem',
-      lineHeight: '1.5rem',
-      py: '1rem',
-      cursor: 'pointer'
-    },
-    '.cancel': {
-      bgcolor: '#FFFFFFF',
-      border: '1px solid #121212',
-      color: '#121212',
-      mr: '1.5rem'
-    },
-    '.sign-up': {
-      bgcolor: theme.palette.secondary.main,
-      border: 'none'
+      width: '24rem',
+      p: '1rem 0',
+      borderRadius: theme.radius,
+      fontWeight: '1.25rem',
+      color: theme.palette.secondary.main,
+      border: 'none',
+      bgcolor: 'transparent'
     }
   }
 }
 
-const SignupPrompt = () => {
+const WelcomePage = () => {
   const navigate = useNavigate();
+
+  const [user, setUser] = React.useState(null);
+
+  React.useState(() => {
+    const person = localStorage.getItem('giftDetails') ?
+      JSON.parse(localStorage.getItem('giftDetails')) : null;
+    setUser(person)
+  }, [])
+
   return (
     <Box sx={prompt}>
       <div className="nav">
@@ -93,13 +108,17 @@ const SignupPrompt = () => {
         <div className="logo">
           <img src="images/logo.png" alt="logo" width='28.37px' height='48px' />
         </div>
-        <div className="text">
-          Hi there! Kindly sign up to continue using Giftly and share your wishlist with your family and friends.
+        <div className="header-wrapper">
+          <div className="header">
+            Hello {user && user.firstname}, Welcome to Giftly 🎉
+          </div>
+          <div className="body">
+            To continue using Giftly, head over to your inbox and click on the verification link we just sent you.
+          </div>
         </div>
         <div className="btns-wrapper">
-          <button className="cancel">Cancel</button>
-          <button className="sign-up" onClick={()=>navigate('/sign-up')}>
-            Sign up
+          <button onClick={()=>navigate('/wishlist')} >
+            <span style={{cursor: 'pointer'}}>Resend email</span>
           </button>
         </div>
       </div>
@@ -107,4 +126,4 @@ const SignupPrompt = () => {
   )
 }
 
-export default SignupPrompt
+export default WelcomePage

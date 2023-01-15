@@ -7,12 +7,9 @@ import { theme } from '../components/Theme';
 import { useNavigate } from 'react-router-dom';
 
 const home = {
+  minHeight: '85vh',
+  width: '100%',
   bgcolor: 'rgba(0, 0, 0, 0.5)',
-  minHeight: '100vh',
-  minWidth: '100vw',
-  position: 'absolute',
-  m: '0',
-  p: '0',
   display: 'flex',
   py: '26px',
   justifyContent: 'center',
@@ -277,6 +274,7 @@ const home = {
       borderRadius: '0.5rem',
       display: 'flex',
       justifyContent: 'center',
+      cursor: 'pointer',
       alignItems: 'center',
       '&>img': {
         mr: '0.98rem'
@@ -341,7 +339,7 @@ const Homepage = () => {
 
   const handleShare = (e) => {
     e.preventDefault();
-    console.log({ WLName, WLDesc });
+    // console.log({ WLName, WLDesc });
     navigate('/signup-prompt');
   }
 

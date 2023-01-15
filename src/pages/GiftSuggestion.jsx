@@ -3,15 +3,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
-import {cloneDeep} from 'lodash'
+import { cloneDeep } from 'lodash';
+// import { theme } from '../components/Theme';
 
 const gift = {
+  width: '100%',
+  minHeight: '85vh',
   bgcolor: 'rgba(0, 0, 0, 0.5)',
-  minHeight: '100vh',
-  minWidth: '100vw',
-  position: 'absolute',
-  m: '0',
-  p: '0',
   display: 'flex',
   py: '26px',
   justifyContent: 'center',
