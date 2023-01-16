@@ -2,6 +2,7 @@
   "name": "digifigs",
   "version": "0.1.0",
   "private": true,
+  "deploy": "aws s3 sync build/ s3://dayve-digifigs --acl public-read",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",

@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,19 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* input.before-input{
+  position: relative;
+  display: 'block';
 }
+input.before-input::before{
+  content:"Content is here";
+  background-color: red;
+  display: 'block';
+  color:white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5000;
+} */

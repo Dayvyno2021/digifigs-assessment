@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { theme } from '../components/Theme';
 import { useNavigate } from 'react-router-dom';
@@ -11,27 +10,62 @@ const home = {
   width: '100%',
   bgcolor: 'rgba(0, 0, 0, 0.5)',
   display: 'flex',
-  py: '26px',
+  py: '1.625rem',
+  boxSizing: 'border-box',
   justifyContent: 'center',
-  container: {
+  '.container': {
     position: 'relative',
     width: '30rem',
     height: '53rem',
     bgcolor: '#FFFFFF',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems:'center',
     borderRadius: '16px',
   },
-  heading: {
+  '.heading': {
     display: 'flex',
     justifyContent: 'center',
     width: '30rem',
-    height: '15rem'
+    height: '15rem',
   },
-  close: {
+  '.header': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    mt: '0.5rem'
+  },
+  '.header-head': {
+    width: '6rem',
+    height: '1.5rem',
+    fontWeight: '475',
+    fontSize: '1rem',
+    lineWeight: '1.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#3D3D3D',
+    justifyContent: 'center',
+  },
+  '.header-body': {
+    width: '14.125rem',
+    height: '1.875rem',
+    fontWeight: '700',
+    fontSize: '1.5rem',
+    lineWeight: '1.875rem',
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: '#121212',
+    justifyContent: 'center'
+  },
+  '.close': {
     position: 'absolute',
     top: '3.625rem',
     right: '3.625rem',
   },
-  logoC: {
+  '.logoC': {
     position: 'absolute',
     top: '6.5rem',
     display: 'flex',
@@ -50,10 +84,21 @@ const home = {
       color: '#121212'
     }
   },
-  main: {
+  '.main-container': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '30rem',
+    height: '30.375rem',
+    // bgcolor: 'red'
+  },
+  '.main': {
     width: '23rem',
     height: '30.375rem',
-    px: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    // px: '2rem',
     overflowX: 'hidden',
     '::-webkit-scrollbar': {
       width: '2px',
@@ -71,6 +116,43 @@ const home = {
       background: '#555555'
     },
   },
+  '.main-wrapper': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    width: '24rem',
+    height: '11.875rem',
+    px: '1rem',
+    mb: '1rem',
+    '.list-wrappers': {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      width: '17.9375rem',
+      height: '15.33rem',
+      mb : '1rem'
+    },
+    '.main-subheading': {
+      width: '17.9375rem',
+      height: '1.5rem',
+      fontWeight: '500',
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+      display: 'flex',
+      alignItems: 'center',
+      color: '#121212'
+    },
+    '.main-note': {
+      width: '17.9735rem',
+      height: '1.25rem',
+      fontWeight: '475',
+      fontSize: '0.875',
+      lineHeight: '1.25rem',
+      display: 'flex',
+      alignItems: 'center',
+      color: '#3D3D3D'
+    }
+  },
   '.input': {
     width: '24rem',
     border: 'none',
@@ -87,15 +169,18 @@ const home = {
       color: '#2E2E3A'
     }
   },
+
   '.wish-container': {
     width: '24rem',
     height: '10.875rem',
     my: '1rem',
+    mt: '2rem' //
   },
   '.wish-cover': {
     width: '17.9rem',
     height: '2.875rem',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
+    ml:'1rem',
   },
   '.add-wish': {
     fontStyle: 'normal',
@@ -114,7 +199,7 @@ const home = {
   '.add-container': {
     width: '24rem',
     height: '19.75rem',
-    borderRadius: '8px',
+    borderRadius: theme.radius,
     bgcolor: '#F7F7F7',
     position: 'relative',
   },
@@ -140,12 +225,10 @@ const home = {
       display: 'flex',
       flexDirection: 'column',
       '&>input': {
-        mt: '-18px',
         backgroundColor: 'transparent',
         border:'none',
         transition:'all 0.3s',
         '&:focus': {
-          mt: '0',
           border: 'none',
           outline: 'none'
         }
@@ -194,12 +277,13 @@ const home = {
       '&>select': {
         width: '3rem',
         height: '2.25rem',
-        padding: '0.375rem 0.4375rem',
+        // padding: '0.375rem 0.4375rem',
         backgroundColor: '#F7F7F7',
         border: '0.5px solid #D5D8DF',
         borderRadius: '4px',
         mr: '8px'
       },
+
       '&>input': {
         fontStyle: 'normal',
         fontWeight: '475',
@@ -321,8 +405,12 @@ const home = {
       right: '-0.5rem',
       cursor: 'pointer'
     }
+  },
+  '.mb4': {
+    mb: '1rem'
   }
 }
+
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -351,35 +439,36 @@ const Homepage = () => {
   const removeProduct = (products, index) => {
     products && products.splice(index, 1);
     localStorage.setItem('storage', JSON.stringify(products));
+    window.location.reload(true);
   }
 
   React.useEffect(() => {
     const storage = localStorage.getItem('storage') ?
       JSON.parse(localStorage.getItem('storage')) : [];
-    setStore(storage)
+    setStore(storage)   
   }, [])
   
   return (
     <Box sx={home}>
-      <Box sx={home.container}>
-        <Box sx={home.heading}>
-          <Box component='img' sx={home.close} src='images/close_btn.png' />
-          <Box sx={home.logoC}>
-            <Box component='img' src='images/logo.png' width='28.37px' height='48px' />
-            <Grid container direction='column' sx={{my: '2px'}}>
-              <Typography align='center'>New wish list</Typography>
-              <Typography align='center' variant='h3'>Create a wish list</Typography>
-            </Grid>
-          </Box>
-        </Box>
-        <Grid container justifyContent='center' sx={{}}>
-          <Box  sx={home.main}>
-            <Box sx={{width: '24rem', height: '11.875rem'}}>
-              <Grid container direction= 'column'>
-                <Typography sx={{...theme.subheading}}>List details</Typography>
-                <Typography sx={{...theme.note}}>Add list name and description</Typography>
-              </Grid>
-              <Grid container direction='column' sx={{my:'1rem'}}>
+      <div className='container'>
+        <div className='heading'>
+          <img src='images/close_btn.png' alt='k' className='close' width='20px' height='20px' />
+          <div className='logoC'>
+            <img src='images/logo.png' alt='kl' width='28.37px' height='48px' />
+            <div className='header'>
+              <div className='header-head' align='center'>New wish list</div>
+              <div className='header-body'>Create a wish list</div>
+            </div>
+          </div>
+        </div>
+        <div header='main-container'>
+          <div className='main'>
+            <div className='main-wrapper'>
+              <div className='list-wrappers'>
+                <div className='main-subheading' >List details</div>
+                <div className='main-note'>Add list name and description</div>
+              </div>
+              <div className='inputs-wrapper1'>
                 <TextField className='input' type='text' style={{ marginBottom: '1rem' }}
                   label='Wish list name' value={WLName}
                   onChange={(e) => setWLName(e.target.value)}
@@ -387,8 +476,8 @@ const Homepage = () => {
                 <TextField className='input' type='text' label='Description(optional)'
                   value = {WLDesc} onChange={e=>setWLDesc(e.target.value)}
                 />
-              </Grid>
-            </Box>
+              </div>
+            </div>
             <div className='wish-container'>
               <div className='wish-cover'>
                 <p className='add-wish'>
@@ -445,7 +534,7 @@ const Homepage = () => {
                 {
                   toggle &&
                 <div className="wish-description">
-                  <input type="text" placeholder='Description' />
+                  <input type="text" placeholder='Wish description' />
                 </div>
                 }
                 <button className='add-btn'>
@@ -458,8 +547,8 @@ const Homepage = () => {
                 </button>
               </div>
             </div>
-          </Box>
-        </Grid>
+          </div>
+        </div>
         <div className="control">
           <button className="delete" style={{opacity:`${WLName? '1':'0.5'}`}}>
             <img src="images/delete.png" alt="del" />
@@ -472,7 +561,7 @@ const Homepage = () => {
             <span>Share</span>
           </button>
         </div>
-      </Box>
+      </div>
     </Box>
   )
 }

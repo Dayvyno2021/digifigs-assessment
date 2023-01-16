@@ -56,10 +56,10 @@ const gift = {
     display: 'flex',
     justifyContent: 'center',
     '.s-wrapper': {
-      width: '24rem',
+      width: '25rem',
       height: '100%',
       display: 'flex',
-      px:'1rem',
+      pr:'2rem',
       flexDirection: 'column',
           overflowX: 'hidden',
     '::-webkit-scrollbar': {
